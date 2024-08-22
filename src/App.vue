@@ -3,8 +3,35 @@
     <router-link to="/">Home</router-link> |
     <router-link to="/about">About</router-link>
   </nav>
+  <menu-catalog></menu-catalog>
   <router-view/>
 </template>
+
+<script>
+import MenuCatalog from "@/components/MenuCatalog.vue";
+
+export default {
+  name: "BreadCrumbs",
+  components: {
+    'menu-catalog': MenuCatalog,
+  },
+  data() {
+    return {
+
+    }
+  },
+
+  mounted() {
+  },
+
+  computed: {
+  },
+
+  methods: {
+
+  }
+}
+</script>
 
 <style lang="scss">
 #app {
