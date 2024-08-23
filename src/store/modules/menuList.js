@@ -1,34 +1,7 @@
 export default {
     namespaced: true,
     state: () => ({
-        menuList: [
-            // {
-            //     id: 1254,
-            //     parentId: null,
-            //     name: 'first page',
-            //     slug: 'first-page',
-            //     children: [
-            //         {
-            //             id: 12541,
-            //             parentId: 1254,
-            //             name: 'first item',
-            //             slug: 'first-item',
-            //         },
-            //         {
-            //             id: 12542,
-            //             parentId: 1254,
-            //             name: 'second item',
-            //             slug: 'second-item',
-            //         },
-            //     ]
-            // },
-            // {
-            //     id: 1255,
-            //     parentId: null,
-            //     name: 'second page',
-            //     slug: 'second-page',
-            // }
-        ],
+        menuList: [],
     }),
 
     getters: {
@@ -49,8 +22,6 @@ export default {
     actions: {
         addNewElem(context, data) {
             console.log(data)
-            console.log(this.state.menuList)
-            // context.commit('setOrder',data)
         },
 
         saveAll(context, newMenuList) {

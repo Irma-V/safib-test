@@ -14,19 +14,6 @@
         </div>
       </div>
 
-      <!--      <div class="menu-editor__item" v-if="newElemIsCreated">-->
-      <!--        <div class="field">-->
-      <!--          <label>name <input type="text" v-model="newMenuItem.name"/></label>-->
-      <!--        </div>-->
-      <!--        <div class="field">-->
-      <!--          <label>slug <input type="text" v-model="newMenuItem.slug"/></label>-->
-      <!--        </div>-->
-      <!--        <div class="menu-editor__options">-->
-      <!--          <button type="button" @click.prevent="addChild(newMenuItem.id)">Добавить подпункт</button>-->
-      <!--          <button type="button" @click.prevent="deleteCurrent(newMenuItem.id)">Удалить</button>-->
-      <!--        </div>-->
-      <!--      </div>-->
-
       <div class="menu-editor__options">
         <button type="button" @click.prevent="addNew">Добавить новый пункт</button>
         <button type="button" @click.prevent="saveMenulist">Сохранить</button>
@@ -76,7 +63,6 @@ export default {
       })
     },
     saveMenulist() {
-      console.log('saveMenulist')
       store.dispatch('menuList/saveAll', this.menuList)
     },
   },
