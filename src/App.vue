@@ -1,23 +1,20 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav>
-  <menu-catalog></menu-catalog>
-  <router-view/>
+  <component :is="layout">
+      <router-view />
+  </component>
 </template>
 
 <script>
-import MenuCatalog from "@/components/MenuCatalog.vue";
-
+import mainLayout from "@/layouts/MainLayout.vue";
+import emptyLayout from "@/layouts/EmptyLayout.vue";
 export default {
   name: "BreadCrumbs",
   components: {
-    'menu-catalog': MenuCatalog,
+    'main-layout':mainLayout,
+    'empty-layout':emptyLayout,
   },
   data() {
     return {
-
     }
   },
 
@@ -25,10 +22,12 @@ export default {
   },
 
   computed: {
+    layout() {
+      return (this.$route.meta.layout || 'empty') + '-layout'
+    },
   },
 
   methods: {
-
   }
 }
 </script>
