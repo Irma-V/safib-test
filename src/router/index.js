@@ -5,17 +5,25 @@ const routes = [
   {
     path: '/',
     name: 'home',
-    // component: HomeView
-    alias: "/"
+    meta: { layout: "main" },
+    component: () => import("../views/HomePage.vue"),
   },
   {
-    path: '/about',
-    name: 'about',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
-  }
+    path: '/admin/',
+    name: 'adminPage',
+    meta: {
+      layout: "empty",
+    },
+    component: () => import("../views/AdminPage.vue"),
+  },
+  {
+    path: '/admin/menuEditor',
+    name: 'menuEditor',
+    meta: {
+      layout: "empty",
+    },
+    component: () => import("../components/admin-panel/MenuEditor.vue"),
+  },
 ]
 
 const router = createRouter({
