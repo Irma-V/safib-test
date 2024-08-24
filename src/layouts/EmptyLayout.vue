@@ -1,5 +1,4 @@
 <template>
-  <h1>e m p t y</h1>
   <div class="layout-content">
     <router-view/>
   </div>
