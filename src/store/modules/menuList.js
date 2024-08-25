@@ -25,7 +25,7 @@ export default {
         },
 
         saveAll(context, newMenuList) {
-            localStorage.setItem( 'menulist', JSON.stringify(newMenuList));
+            localStorage.setItem('menulist', JSON.stringify(newMenuList));
             console.log(JSON.parse(localStorage.getItem('menulist')))
             context.commit('setMenuList')
         },

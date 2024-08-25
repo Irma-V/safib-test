@@ -48,7 +48,7 @@ export default {
     display: flex;
     flex-direction: row;
     justify-content: center;
-    gap: 1rem;
+    gap: 16px;
 
     .list {
       &-item {

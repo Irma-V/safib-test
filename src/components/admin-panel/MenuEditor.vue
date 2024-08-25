@@ -1,23 +1,18 @@
 <template>
   <form class="menu-editor">
-    <div class="menu-editor__wrapper">
-      <div class="menu-editor__item" v-for="menuItem in menuList" :key="menuItem.id">
-        <div class="field">
-          <label>name <input type="text" v-model="menuItem.name"/></label>
-        </div>
-        <div class="field">
-          <label>slug <input type="text" v-model="menuItem.slug"/></label>
-        </div>
-        <div class="menu-editor__options">
-          <button type="button" @click.prevent="addChild(menuItem.id)">Добавить подпункт</button>
-          <button type="button" @click.prevent="deleteCurrent(menuItem.id)">Удалить</button>
-        </div>
-      </div>
-
-      <div class="menu-editor__options">
-        <button type="button" @click.prevent="addNew">Добавить новый пункт</button>
-        <button type="button" @click.prevent="saveMenulist">Сохранить</button>
-      </div>
+    <ul class="menu-editor__wrapper">
+      <menu-item
+          :item="item"
+          :index="index"
+          v-for="(item, index) in items"
+          :key="item.id"
+          @deleteItem="deleteItem"
+      >
+      </menu-item>
+    </ul>
+    <div class="menu-editor__options">
+      <button type="button" @click.prevent="addNew">add new</button>
+      <button type="button" @click.prevent="saveMenulist">Сохранить</button>
     </div>
   </form>
 </template>
@@ -25,22 +20,22 @@
 <script>
 import {mapGetters} from "vuex";
 import store from "@/store";
+import MenuItem from "@/components/admin-panel/MenuItem.vue";
 
 export default {
   name: "MenuEditor",
+  components: {
+    MenuItem
+  },
   props: {},
   data() {
     return {
-      newElemIsCreated: false,
-      newMenuItem: {
-        id: 0,
-        name: '',
-        slug: '',
-      }
+      items: []
     }
   },
   created() {
     store.commit('menuList/setMenuList')
+    this.items = this.menuList
   },
   computed: {
     ...mapGetters({
@@ -48,28 +43,27 @@ export default {
     }),
   },
   methods: {
-    addChild(id) {
-      console.log(`addChild for ${id}`)
-    },
-    deleteCurrent(id) {
-      console.log(`deleteCurrent for ${id}`)
-    },
+
+
     addNew() {
-      this.menuList.push({
-        id: Math.floor(Math.random() * 9999),
-        parentId: null,
-        name: '',
-        slug: ''
-      })
+      const id = Math.floor(Math.random() * 9999),
+          newItem = {
+            id,
+            children: []
+          }
+      this.items.push(newItem)
+    },
+    deleteItem(index) {
+      this.items.splice(index, 1)
     },
     saveMenulist() {
-      store.dispatch('menuList/saveAll', this.menuList)
+      store.dispatch('menuList/saveAll', this.items)
     },
   },
 }
 </script>
 
-<style scoped lang="scss">
+<style lang="scss">
 .menu-editor {
   opacity: 1;
   max-height: 100vh;
@@ -77,8 +71,21 @@ export default {
   &__wrapper {
     display: flex;
     flex-direction: column;
-    gap: 16px;
     align-items: center;
+
+    li {
+      padding: 16px 0;
+
+      ul.children-list {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+
+        li {
+          padding: 0;
+        }
+      }
+    }
   }
 
   &__item, &__options {
