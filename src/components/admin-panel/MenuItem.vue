@@ -58,7 +58,7 @@ export default {
   },
   mounted() {
     this.name = this.item.name ? this.item.name : ''
-    this.slug = this.item.name ? this.item.name : ''
+    this.slug = this.item.name ? this.item.slug : ''
   },
   computed: {},
   methods: {
