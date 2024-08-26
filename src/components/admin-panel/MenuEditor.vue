@@ -1,14 +1,13 @@
 <template>
   <form class="menu-editor">
     <ul class="menu-editor__wrapper">
-      <menu-item
-          :item="item"
-          :index="index"
+      <menu-editor-item
           v-for="(item, index) in items"
           :key="item.id"
+          :item="item"
+          :index="index"
           @deleteItem="deleteItem"
-      >
-      </menu-item>
+      />
     </ul>
     <div class="menu-editor__options">
       <button type="button" @click.prevent="addNew">add new</button>
@@ -20,12 +19,12 @@
 <script>
 import {mapGetters} from "vuex";
 import store from "@/store";
-import MenuItem from "@/components/admin-panel/MenuItem.vue";
+import MenuEditorItem from "@/components/admin-panel/MenuEditorItem.vue";
 
 export default {
   name: "MenuEditor",
   components: {
-    MenuItem
+    MenuEditorItem
   },
   props: {},
   data() {
@@ -64,42 +63,5 @@ export default {
 </script>
 
 <style lang="scss">
-.menu-editor {
-  opacity: 1;
-  max-height: 100vh;
 
-  &__wrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
-    li {
-      padding: 16px 0;
-
-      ul.children-list {
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-
-        li {
-          padding: 0;
-        }
-      }
-    }
-  }
-
-  &__item, &__options {
-    display: flex;
-    gap: 6px;
-  }
-
-  &__item {
-    flex-direction: column;
-  }
-
-  &__options {
-    flex-direction: row;
-    justify-content: space-between;
-  }
-}
 </style>

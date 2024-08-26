@@ -9,11 +9,11 @@
       </div>
     </div>
     <ul class="children-list" v-if="item.children && item.children.length > 0">
-      <menu-item
+      <menu-editor-item
           v-for="(child, subIndex) in item.children"
+          :key="child.id"
           :item="child"
           :index="subIndex"
-          :key="child.id"
           :parentItem="item"
           @deleteSubItem="deleteSubItem"
       />
@@ -36,7 +36,7 @@
 <script>
 export default {
   /* eslint-disable */
-  name: "MenuItem",
+  name: "MenuEditorItem",
   props: {
     item: {
       type: Object,

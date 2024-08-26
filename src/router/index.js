@@ -9,6 +9,13 @@ const routes = [
     component: () => import("../views/HomePage.vue"),
   },
   {
+    path: '/page/:pageSlug?',
+    name: 'CurrentPage',
+    meta: { layout: "main" },
+    component: () => import("../views/CurrentPage.vue"),
+    props: true,
+  },
+  {
     path: '/admin/',
     name: 'adminPage',
     meta: {
