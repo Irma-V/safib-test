@@ -3,31 +3,30 @@
     <router-link :to="{
       name: 'CurrentPage',
       params: {
-        pageSlug: item.slug,
-        pageName: item.name
-      }
+        id: item.id,
+      },
     }">
       <span>{{ item.name }}</span>
     </router-link>
-    <ul class="menu-item__children">
-      <menu-item
-          v-for="(child, subIndex) in item.children"
-          :key="child.id"
-          :item="child"
-          :index="subIndex"
-          :parentItem="item"
-      />
-    </ul>
+    <div class="menu-item__children" v-if="item.children.length > 0">
+      <ul>
+        <menu-item
+            v-for="(child, subIndex) in item.children"
+            :key="child.id"
+            :item="child"
+            :index="subIndex"
+            :parentItem="item"
+        />
+      </ul>
+    </div>
   </li>
 </template>
 
 <script>
-import MenuEditorItem from "@/components/admin-panel/MenuEditorItem.vue";
 
 export default {
   /* eslint-disable */
   name: "MenuItem",
-  components: {MenuEditorItem},
   props: {
     item: {
       type: Object,
@@ -54,64 +53,55 @@ export default {
 }
 </script>
 
-<style scoped lang="scss">
-.menu-block__list, .menu-item__children {
+<style lang="scss">
+ul {
+ padding: 5%;
+}
+li {
+  list-style-type: none;
+}
+
   .menu-item {
     cursor: pointer;
     position: relative;
-
-    &__children {
-      position: absolute;
-      left: 0;
-    }
-
-    &:hover {
-      .menu-item__children {
-
-      }
-    }
-  }
-}
-
-.menu-item {
-
-}
-
-.menu-item,
-.menu-item__children .menu-item {
-  cursor: pointer;
-  position: relative;
-
-  .menu-item__children {
-    position: absolute;
-    left: 0;
-    display: none;
   }
 
-  &:hover {
-    .menu-item__children {
-      display: block;
-    }
-  }
-}
 
-.menu-item__children .menu-item {
-  .menu-item__children {
-    background: aliceblue;
-    position: absolute;
-    left: 0;
-    display: none;
-    z-index: 1;
 
-    .menu-item {
-      &:hover {
-        .menu-item__children {
-          display: block;
-        }
-      }
-    }
-  }
-
-}
+//.menu-item__children .menu-item {
+//  cursor: pointer;
+//  position: relative;
+//
+//  .menu-item__children {
+//    position: absolute;
+//    left: 0;
+//    display: none;
+//  }
+//
+//  &:hover {
+//    .menu-item__children {
+//      display: block;
+//    }
+//  }
+//}
+//
+//.menu-item__children .menu-item {
+//  .menu-item__children {
+//    background: aliceblue;
+//    position: absolute;
+//    left: 0;
+//    display: none;
+//    z-index: 1;
+//
+//    .menu-item {
+//      &:hover {
+//        .menu-item__children {
+//          display: block;
+//        }
+//      }
+//    }
+//  }
+//
+//}
 
 </style>

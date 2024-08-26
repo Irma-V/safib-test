@@ -1,7 +1,6 @@
 <template>
   <article>
     <div class="content">
-      <!-- <div>BreadCrumbs</div> -->
       <ul>
         <slot/>
       </ul>
@@ -26,5 +25,8 @@ export default {
 </script>
 
 <style scoped lang="scss">
-
+ul {
+  display: flex;
+  flex-direction: row;
+}
 </style>

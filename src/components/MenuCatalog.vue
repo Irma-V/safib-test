@@ -2,11 +2,8 @@
   <div class="menu-block">
     <nav>
       <ul class="menu-block__list">
-<!--        <li class="list-item" v-for="menuItem in menuList" :key="menuItem.id">-->
-<!--          {{menuItem.name}}-->
-<!--        </li>-->
         <menu-item
-            v-for="(item, index) in list"
+            v-for="(item, index) in menuList"
             :key="item.id"
             :item="item"
             :index="index"
@@ -38,7 +35,7 @@ export default {
   },
   created() {
     store.commit('menuList/setMenuList');
-    this.list = this.menuList
+    // this.list = this.menuList
   },
   computed: {
     ...mapGetters({

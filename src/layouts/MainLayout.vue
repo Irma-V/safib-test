@@ -1,7 +1,4 @@
 <template>
-<!--  <div class="layout-content">-->
-<!--    <router-view/>-->
-<!--  </div>-->
   <div class="container" @click="closeMenu">
     <header></header>
     <main>

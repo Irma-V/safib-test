@@ -8,7 +8,7 @@
 
 <script>
 export default {
-  name: "BreadCrumb.vue",
+  name: "BreadCrumbs",
   props: {},
   data() {
     return {}
