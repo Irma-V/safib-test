@@ -2,12 +2,13 @@
   <section class="current-page__breadcrumbs">
     <bread-crumbs>
       <bread-crumb :to="{name: 'home'}">home</bread-crumb>
-      <bread-crumb v-for="parent in parents" :key="parent.parentId" :to="{
-        name: 'CurrentPage',
-        params: {
-          id: parent.parentId
-        }
-      }"> {{parent.name}} </bread-crumb>
+            <bread-crumb v-for="parent in parents" :key="parent.parentId" :to="{
+              name: 'CurrentPage',
+              params: {
+                id: parent.parentId
+              }
+            }"> {{ parent.name }}
+            </bread-crumb>
     </bread-crumbs>
   </section>
 
@@ -23,23 +24,19 @@
         voluptate? Ex facere nihil nisi placeat temporibus. Architecto at cum dolorem, enim eveniet ex, impedit libero,
         magni nemo neque quod repudiandae suscipit? Accusantium aliquid atque blanditiis consectetur deleniti, dolore
         dolorum ex excepturi harum incidunt inventore ipsum nisi non nostrum odit possimus quia quibusdam quo rem,
-        repellat. A accusamus aliquam amet delectus eaque enim eum expedita fugit hic ipsa laborum maiores nam, nemo optio
+        repellat. A accusamus aliquam amet delectus eaque enim eum expedita fugit hic ipsa laborum maiores nam, nemo
+        optio
         perferendis porro reiciendis repudiandae, velit. In neque quam quo tenetur. Autem, delectus distinctio doloribus
         ea eaque eveniet fugiat illo illum in iure laborum libero nemo nisi obcaecati odit omnis pariatur quam quas
-        quisquam quo recusandae reiciendis reprehenderit saepe tempora ullam! Ab cum mollitia necessitatibus numquam rerum
+        quisquam quo recusandae reiciendis reprehenderit saepe tempora ullam! Ab cum mollitia necessitatibus numquam
+        rerum
         sint, sit. Aliquam consequuntur eos iure modi nesciunt perspiciatis saepe sequi voluptate! Ea, facilis, minima!
-        Dolore doloribus explicabo harum laudantium libero rem, reprehenderit voluptas voluptate? Deleniti dicta eaque eos
+        Dolore doloribus explicabo harum laudantium libero rem, reprehenderit voluptas voluptate? Deleniti dicta eaque
+        eos
         excepturi id ipsa itaque neque obcaecati recusandae, voluptatum! Architecto consectetur corporis cum debitis
         eligendi eveniet expedita facilis inventore iure labore, molestiae molestias perspiciatis quae quis repellendus
         temporibus voluptate? Animi at commodi ducimus eligendi nihil quae quaerat similique vero! Cumque est ex nisi
-        obcaecati! Aliquam, aperiam architecto assumenda blanditiis culpa deserunt enim esse eveniet illo modi nam, natus
-        necessitatibus nesciunt nulla placeat porro provident quia quibusdam quidem quo rem similique sunt suscipit veniam
-        veritatis vero voluptate! Atque deserunt enim, ipsam modi ratione sed sequi sint voluptate? Accusantium
-        architecto, consequatur consequuntur ducimus enim est et eum explicabo impedit in ipsum magnam maxime modi
-        necessitatibus nesciunt non omnis pariatur recusandae, rem rerum sapiente sed soluta temporibus. Beatae cum
-        deleniti distinctio eum ex fugit hic, itaque omnis quae sequi. Ab animi blanditiis commodi consectetur culpa eum
-        excepturi id ipsa ipsum libero maiores natus odio quas quibusdam recusandae sapiente, similique sint ut voluptas,
-        voluptatibus.
+        obcaecati!
       </p>
     </article>
   </section>
@@ -61,7 +58,7 @@
 
 </template>
 
-<script>
+<script> /* eslint-disable */
 import BreadCrumbs from "@/components/breadcrumbs/BreadCrumbs.vue";
 import BreadCrumb from "@/components/breadcrumbs/BreadCrumb.vue";
 import {mapGetters} from "vuex";
@@ -82,30 +79,30 @@ export default {
     }
   },
   created() {
-    store.commit('currentPageData/setCurrentData', this.currentElement)
+    store.commit('menuList/setMenuList')
+    store.dispatch('currentPageData/rewriteCurrentData', this.currentElement)
   },
   computed: {
     ...mapGetters({
       menuList: 'menuList/getMenuList',
       currentData: 'currentPageData/getCurrentData',
     }),
+
     currentElement() {
-      if (!this.currentData || Number(this.$route.params.id) !== this.currentData.id) {
-        return this.getCurrentElement(Number(this.$route.params.id))
-      } else {
-        return this.currentData
-      }
+      return this.getCurrentElement(Number(this.$route.params.id))
     },
   },
   methods: {
     findElement(data, id) {
       for (let item of data) {
         if (item.id === id) {
+          this.getParents(item)
           return item;
         }
         if (Array.isArray(item.children)) {
           const found = this.findElement(item.children, id);
           if (found) {
+            this.getParents(item)
             return found;
           }
         }
@@ -114,18 +111,17 @@ export default {
 
     getCurrentElement(id) {
       const currentElement = this.findElement(this.menuList, id)
-      this.getParents(currentElement)
       store.dispatch('currentPageData/rewriteCurrentData', currentElement);
       return currentElement
     },
 
     getParents(elem) {
-      if (!this.parents.includes(elem.id) || elem.id !== undefined) {
+      if (!this.parents.find(item => item.parentId === elem.id)) {
         this.parents.push({
           parentId: elem.id,
           name: elem.name,
           slug: elem.slug
-        });
+        })
         console.log(this.parents)
       } else return
     }

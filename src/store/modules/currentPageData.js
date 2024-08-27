@@ -5,23 +5,18 @@ export default {
     }),
     getters: {
         getCurrentData(state) {
-            // if (!JSON.parse(localStorage.getItem('currentPage'))) {
-            //     state.currentData = {};
-            // } else {
-            //     state.currentData = JSON.parse(localStorage.getItem('currentPage'));
-            // }
             return state.currentData;
         },
     },
     mutations: {
-        setCurrentData(state, data) {
-            state.currentData = data;
+        setCurrentData(state) {
+            state.currentData = JSON.parse(localStorage.getItem('currentData'))
         },
     },
     actions: {
         rewriteCurrentData(context, freshData) {
             localStorage.setItem('currentPage', JSON.stringify(freshData))
-            context.commit('setCurrentData', freshData)
+            context.commit('setCurrentData')
         },
     }
 }
