@@ -1,6 +1,5 @@
 <template>
-  <div class="container" @click="closeMenu">
-    <header></header>
+  <div class="container">
     <main>
       <router-view />
     </main>

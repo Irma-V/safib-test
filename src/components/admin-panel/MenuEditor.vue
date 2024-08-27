@@ -1,19 +1,23 @@
 <template>
-  <form class="menu-editor">
-    <ul class="menu-editor__wrapper">
-      <menu-editor-item
-          v-for="(item, index) in items"
-          :key="item.id"
-          :item="item"
-          :index="index"
-          @deleteItem="deleteItem"
-      />
-    </ul>
-    <div class="menu-editor__options">
-      <button type="button" @click.prevent="addNew">add new</button>
-      <button type="button" @click.prevent="saveMenulist">Сохранить</button>
-    </div>
-  </form>
+  <h1 class="menu-editor-page__title">Menu editor</h1>
+  <section class="menu-editor__block">
+    <form class="menu-editor">
+      <div class="menu-editor__options">
+        <button type="button" @click.prevent="addNew">add new</button>
+        <button type="button" @click.prevent="saveMenulist">Сохранить</button>
+      </div>
+
+      <ul class="menu-editor__wrapper">
+        <menu-editor-item
+            v-for="(item, index) in items"
+            :key="item.id"
+            :item="item"
+            :index="index"
+            @deleteItem="deleteItem"
+        />
+      </ul>
+    </form>
+  </section>
 </template>
 
 <script>

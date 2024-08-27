@@ -1,5 +1,5 @@
 <template>
-  <li>
+  <li class="menu-editor__item">
     <div class="fields">
       <div class="field">
         <label>name<input type="text" v-model="name" @input="writeValue"/></label>

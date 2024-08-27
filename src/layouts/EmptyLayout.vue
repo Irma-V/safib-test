@@ -1,6 +1,8 @@
 <template>
-  <div class="layout-content">
-    <router-view/>
+  <div class="container">
+    <main>
+      <router-view/>
+    </main>
   </div>
 </template>
 
