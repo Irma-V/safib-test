@@ -1,15 +1,15 @@
 <template>
   <li class="menu-item">
-    <router-link :to="{
+    <router-link class="menu-item__title" :to="{
       name: 'CurrentPage',
       params: {
         id: item.id,
       },
     }">
-      <span>{{ item.name }}</span>
+      <div class="title-content">{{ item.name }}</div>
     </router-link>
-    <div class="menu-item__children" v-if="item.children.length > 0">
-      <ul>
+    <div class="menu-item__menu-list children" v-if="item.children.length > 0">
+      <ul class="children-list">
         <menu-item
             v-for="(child, subIndex) in item.children"
             :key="child.id"
@@ -54,17 +54,17 @@ export default {
 </script>
 
 <style lang="scss">
-ul {
- padding: 5%;
-}
-li {
-  list-style-type: none;
-}
-
-  .menu-item {
-    cursor: pointer;
-    position: relative;
-  }
+//ul {
+// padding: 5%;
+//}
+//li {
+//  list-style-type: none;
+//}
+//
+//  .menu-item {
+//    cursor: pointer;
+//    position: relative;
+//  }
 
 
 

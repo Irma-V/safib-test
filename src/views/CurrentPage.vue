@@ -1,25 +1,60 @@
 <template>
-<div class="page-title"> I'm page <span>{{ currentElement.name }}</span></div>
-  <div class="breadcrumbs-block">
+  <section class="current-page__breadcrumbs">
     <bread-crumbs>
       <bread-crumb :to="{name: 'home'}">home</bread-crumb>
       /
       <bread-crumb></bread-crumb>
     </bread-crumbs>
-  </div>
+  </section>
 
-  <div class="menuCatalog" v-if="currentElement.children.length > 0">
-    <nav>
-      <ul class="menu-block__list">
-        <menu-item
-            v-for="(item, index) in currentElement.children"
-            :key="item.id"
-            :item="item"
-            :index="index"
-        />
-      </ul>
-    </nav>
-  </div>
+  <section class="current-page__page-content">
+    <h1 class="page-content__title">I'm page {{ currentElement.name }}</h1>
+    <article class="page-content__text-content">
+      <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam commodi cumque eos eum nam odio totam.
+        Asperiores autem cupiditate esse facilis minima necessitatibus, soluta tempora. Asperiores atque magnam repellat
+        saepe!
+      </p>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur enim iste iure pariatur quibusdam tempore
+        voluptate? Ex facere nihil nisi placeat temporibus. Architecto at cum dolorem, enim eveniet ex, impedit libero,
+        magni nemo neque quod repudiandae suscipit? Accusantium aliquid atque blanditiis consectetur deleniti, dolore
+        dolorum ex excepturi harum incidunt inventore ipsum nisi non nostrum odit possimus quia quibusdam quo rem,
+        repellat. A accusamus aliquam amet delectus eaque enim eum expedita fugit hic ipsa laborum maiores nam, nemo optio
+        perferendis porro reiciendis repudiandae, velit. In neque quam quo tenetur. Autem, delectus distinctio doloribus
+        ea eaque eveniet fugiat illo illum in iure laborum libero nemo nisi obcaecati odit omnis pariatur quam quas
+        quisquam quo recusandae reiciendis reprehenderit saepe tempora ullam! Ab cum mollitia necessitatibus numquam rerum
+        sint, sit. Aliquam consequuntur eos iure modi nesciunt perspiciatis saepe sequi voluptate! Ea, facilis, minima!
+        Dolore doloribus explicabo harum laudantium libero rem, reprehenderit voluptas voluptate? Deleniti dicta eaque eos
+        excepturi id ipsa itaque neque obcaecati recusandae, voluptatum! Architecto consectetur corporis cum debitis
+        eligendi eveniet expedita facilis inventore iure labore, molestiae molestias perspiciatis quae quis repellendus
+        temporibus voluptate? Animi at commodi ducimus eligendi nihil quae quaerat similique vero! Cumque est ex nisi
+        obcaecati! Aliquam, aperiam architecto assumenda blanditiis culpa deserunt enim esse eveniet illo modi nam, natus
+        necessitatibus nesciunt nulla placeat porro provident quia quibusdam quidem quo rem similique sunt suscipit veniam
+        veritatis vero voluptate! Atque deserunt enim, ipsam modi ratione sed sequi sint voluptate? Accusantium
+        architecto, consequatur consequuntur ducimus enim est et eum explicabo impedit in ipsum magnam maxime modi
+        necessitatibus nesciunt non omnis pariatur recusandae, rem rerum sapiente sed soluta temporibus. Beatae cum
+        deleniti distinctio eum ex fugit hic, itaque omnis quae sequi. Ab animi blanditiis commodi consectetur culpa eum
+        excepturi id ipsa ipsum libero maiores natus odio quas quibusdam recusandae sapiente, similique sint ut voluptas,
+        voluptatibus.
+      </p>
+    </article>
+  </section>
+
+  <section class="current-page__nav-menu">
+    <div class="nav-menu__wrapper" v-if="currentElement.children.length > 0">
+      <nav class="nav-menu__nav-panel menu">
+        <ul class="menu-list">
+          <menu-item
+              v-for="(item, index) in currentElement.children"
+              :key="item.id"
+              :item="item"
+              :index="index"
+          />
+        </ul>
+      </nav>
+    </div>
+  </section>
+
 </template>
 
 <script>
@@ -28,6 +63,7 @@ import BreadCrumb from "@/components/breadcrumbs/BreadCrumb.vue";
 import {mapGetters} from "vuex";
 import MenuItem from "@/components/MenuItem.vue";
 import store from "@/store";
+
 export default {
   name: "CurrentPage",
   components: {
@@ -35,8 +71,7 @@ export default {
     BreadCrumbs,
     BreadCrumb
   },
-  props: {
-  },
+  props: {},
   data() {
     return {}
   },
@@ -47,7 +82,7 @@ export default {
       menuList: 'menuList/getMenuList',
       currentData: 'currentPageData/getCurrentData',
     }),
-    currentElement () {
+    currentElement() {
       if (!this.currentData || Number(this.$route.params.id) !== this.currentData.id) {
         return this.findElement(this.menuList, Number(this.$route.params.id))
       } else {
@@ -66,7 +101,7 @@ export default {
           const found = this.findElement(item.children, id);
           if (found) {
             // localStorage.setItem('currentPage', JSON.stringify(found))
-            store.dispatch('currentPageData/rewriteCurrentData',found)
+            store.dispatch('currentPageData/rewriteCurrentData', found)
             return found;
           }
         }
@@ -75,12 +110,3 @@ export default {
   },
 }
 </script>
-
-<style scoped lang="scss">
-$mainFont: "Fira Sans", sans-serif;
-
-span {
-  text-transform: capitalize;
-  font: 700 16px/16px $mainFont
-}
-</style>

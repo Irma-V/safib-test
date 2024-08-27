@@ -1,0 +1,14 @@
+.current-page {
+  &__page-content {
+    .page-content {
+      &__title {
+        text-transform: capitalize;
+        font: 700 16px/16px $mainFont
+      }
+      &__text-content {
+        margin: 0 10%;
+        text-align: left;
+      }
+    }
+  }
+}
