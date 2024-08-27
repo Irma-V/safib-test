@@ -5,7 +5,11 @@ export default {
     }),
     getters: {
         getCurrentData(state) {
-            state.currentData = JSON.parse(localStorage.getItem('currentPage'));
+            // if (!JSON.parse(localStorage.getItem('currentPage'))) {
+            //     state.currentData = {};
+            // } else {
+            //     state.currentData = JSON.parse(localStorage.getItem('currentPage'));
+            // }
             return state.currentData;
         },
     },

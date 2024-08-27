@@ -10,11 +10,6 @@
         />
       </ul>
     </nav>
-
-    <button class="option-btn" @click.prevent="createMenuItem">
-      <template v-if="menuList.length === 0">Создать меню</template>
-      <template v-else>Пополнить меню</template>
-    </button>
   </div>
 </template>
 
@@ -27,7 +22,6 @@ export default {
   components: {
     MenuItem,
   },
-  props: {},
   data() {
     return {
       list: [],
@@ -43,9 +37,7 @@ export default {
     }),
   },
   methods: {
-    createMenuItem() {
-      this.$router.push({ name: 'menuEditor' })
-    },
+
   },
 }
 </script>

@@ -15,7 +15,11 @@ export default {
 
     mutations: {
         setMenuList(state) {
-            state.menuList = JSON.parse(localStorage.getItem('menulist'));
+            if (!JSON.parse(localStorage.getItem('menulist'))) {
+                state.menuList = [];
+            } else {
+                state.menuList = JSON.parse(localStorage.getItem('menulist'));
+            }
         },
     },
 

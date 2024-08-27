@@ -12,7 +12,7 @@
   </section>
 
   <section class="current-page__page-content">
-    <h1 class="page-content__title">I'm page {{ currentElement.name }}</h1>
+    <h1 class="page-content__title">{{ currentElement.name }}</h1>
     <article class="page-content__text-content">
       <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam commodi cumque eos eum nam odio totam.
         Asperiores autem cupiditate esse facilis minima necessitatibus, soluta tempora. Asperiores atque magnam repellat
@@ -82,6 +82,7 @@ export default {
     }
   },
   created() {
+    store.commit('currentPageData/setCurrentData', this.currentElement)
   },
   computed: {
     ...mapGetters({
@@ -100,7 +101,6 @@ export default {
     findElement(data, id) {
       for (let item of data) {
         if (item.id === id) {
-          this.getParents(data)
           return item;
         }
         if (Array.isArray(item.children)) {

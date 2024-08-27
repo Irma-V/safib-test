@@ -14,7 +14,7 @@ a { text-decoration: none; }
 
   &__nav-panel {
     padding: 0;
-    flex-basis: 60%;
+    flex-basis: 100%;
   }
 }
 
@@ -70,7 +70,8 @@ a { text-decoration: none; }
 
 .option-btn {
   padding: 10px;
-  height: 40px;
+  max-height: 40px;
+  max-width: 250px;
   background: #42b983;
   border-radius: 3px;
 }
