@@ -122,7 +122,6 @@ export default {
           name: elem.name,
           slug: elem.slug
         })
-        console.log(this.parents)
       } else return
     }
   },
