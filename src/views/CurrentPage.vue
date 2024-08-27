@@ -2,13 +2,13 @@
   <section class="current-page__breadcrumbs">
     <bread-crumbs>
       <bread-crumb :to="{name: 'home'}">home</bread-crumb>
-            <bread-crumb v-for="parent in parents" :key="parent.parentId" :to="{
+      <bread-crumb v-for="parent in parents" :key="parent.parentId" :to="{
               name: 'CurrentPage',
               params: {
                 id: parent.parentId
               }
             }"> {{ parent.name }}
-            </bread-crumb>
+      </bread-crumb>
     </bread-crumbs>
   </section>
 

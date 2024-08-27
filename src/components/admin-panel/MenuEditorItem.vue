@@ -20,13 +20,13 @@
     </ul>
     <div class="menu-editor__options">
       <button v-if="parentItem" @click.prevent="deleteSubItem">
-        Delete sub-item
+        Удалить подпункт
       </button>
       <button v-if="!parentItem" @click.prevent="deleteItem">
-        Delete item
+        Удалить пункт
       </button>
       <button type="button" @click.prevent="addSubItem">
-        Add sub-item
+        Добавить подпункт
       </button>
     </div>
   </li>

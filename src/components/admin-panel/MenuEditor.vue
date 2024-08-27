@@ -3,8 +3,9 @@
   <section class="menu-editor__block">
     <form class="menu-editor">
       <div class="menu-editor__options">
-        <button type="button" @click.prevent="addNew">add new</button>
+        <button type="button" @click.prevent="addNew">Добавить новый пункт</button>
         <button type="button" @click.prevent="saveMenulist">Сохранить</button>
+        <button type="button" @click.prevent> <router-link :to="{name: 'home'}">home</router-link> </button>
       </div>
 
       <ul class="menu-editor__wrapper">
