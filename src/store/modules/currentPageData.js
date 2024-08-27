@@ -10,14 +10,14 @@ export default {
         },
     },
     mutations: {
-        setCurrentData(state) {
-            state.currentData = JSON.parse(localStorage.getItem('currentPage'));
+        setCurrentData(state, data) {
+            state.currentData = data;
         },
     },
     actions: {
         rewriteCurrentData(context, freshData) {
             localStorage.setItem('currentPage', JSON.stringify(freshData))
-            context.commit('setCurrentData')
+            context.commit('setCurrentData', freshData)
         },
     }
 }

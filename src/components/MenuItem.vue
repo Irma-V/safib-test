@@ -3,7 +3,7 @@
     <router-link class="menu-item__title" :to="{
       name: 'CurrentPage',
       params: {
-        id: item.id,
+        id: item.id
       },
     }">
       <div class="title-content">{{ item.name }}</div>
@@ -52,56 +52,3 @@ export default {
   /* eslint-enable */
 }
 </script>
-
-<style lang="scss">
-//ul {
-// padding: 5%;
-//}
-//li {
-//  list-style-type: none;
-//}
-//
-//  .menu-item {
-//    cursor: pointer;
-//    position: relative;
-//  }
-
-
-
-//.menu-item__children .menu-item {
-//  cursor: pointer;
-//  position: relative;
-//
-//  .menu-item__children {
-//    position: absolute;
-//    left: 0;
-//    display: none;
-//  }
-//
-//  &:hover {
-//    .menu-item__children {
-//      display: block;
-//    }
-//  }
-//}
-//
-//.menu-item__children .menu-item {
-//  .menu-item__children {
-//    background: aliceblue;
-//    position: absolute;
-//    left: 0;
-//    display: none;
-//    z-index: 1;
-//
-//    .menu-item {
-//      &:hover {
-//        .menu-item__children {
-//          display: block;
-//        }
-//      }
-//    }
-//  }
-//
-//}
-
-</style>

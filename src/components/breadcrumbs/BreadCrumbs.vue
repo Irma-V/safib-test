@@ -26,6 +26,7 @@ export default {
 
 <style scoped lang="scss">
 ul {
+  list-style: none;
   display: flex;
   flex-direction: row;
 }

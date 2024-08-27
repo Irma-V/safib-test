@@ -2,8 +2,12 @@
   <section class="current-page__breadcrumbs">
     <bread-crumbs>
       <bread-crumb :to="{name: 'home'}">home</bread-crumb>
-      /
-      <bread-crumb></bread-crumb>
+      <bread-crumb v-for="parent in parents" :key="parent.parentId" :to="{
+        name: 'CurrentPage',
+        params: {
+          id: parent.parentId
+        }
+      }"> {{parent.name}} </bread-crumb>
     </bread-crumbs>
   </section>
 
@@ -73,7 +77,9 @@ export default {
   },
   props: {},
   data() {
-    return {}
+    return {
+      parents: [],
+    }
   },
   created() {
   },
@@ -84,7 +90,7 @@ export default {
     }),
     currentElement() {
       if (!this.currentData || Number(this.$route.params.id) !== this.currentData.id) {
-        return this.findElement(this.menuList, Number(this.$route.params.id))
+        return this.getCurrentElement(Number(this.$route.params.id))
       } else {
         return this.currentData
       }
@@ -93,19 +99,35 @@ export default {
   methods: {
     findElement(data, id) {
       for (let item of data) {
-        if (item.id === Number(id)) {
-          localStorage.setItem('currentPage', JSON.stringify(item))
+        if (item.id === id) {
+          this.getParents(data)
           return item;
         }
         if (Array.isArray(item.children)) {
           const found = this.findElement(item.children, id);
           if (found) {
-            // localStorage.setItem('currentPage', JSON.stringify(found))
-            store.dispatch('currentPageData/rewriteCurrentData', found)
             return found;
           }
         }
       }
+    },
+
+    getCurrentElement(id) {
+      const currentElement = this.findElement(this.menuList, id)
+      this.getParents(currentElement)
+      store.dispatch('currentPageData/rewriteCurrentData', currentElement);
+      return currentElement
+    },
+
+    getParents(elem) {
+      if (!this.parents.includes(elem.id) || elem.id !== undefined) {
+        this.parents.push({
+          parentId: elem.id,
+          name: elem.name,
+          slug: elem.slug
+        });
+        console.log(this.parents)
+      } else return
     }
   },
 }

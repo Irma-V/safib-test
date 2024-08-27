@@ -18,21 +18,20 @@ export default {
 </script>
 
 <style scoped lang="scss">
-li:first-child{
-  padding: 0 3% 0 0;
-}
-
 li {
   text-decoration: underline;
   padding: 0 3%;
-}
-
-li:last-child {
-  color: rgb(89, 163, 139);;
-  text-decoration: none;
-  padding: 0 0 0 3%;
-  a{
-    cursor: auto;
+  
+  &:first-child{
+    padding: 0 3% 0 0;
+  }
+  :last-child {
+    color: rgb(89, 163, 139);;
+    text-decoration: none;
+    padding: 0 0 0 3%;
+    a{
+      cursor: auto;
+    }
   }
 }
 </style>

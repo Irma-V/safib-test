@@ -18,7 +18,3 @@ export default {
     methods: {},
 }
 </script>
-
-<style scoped lang="scss">
-
-</style>
