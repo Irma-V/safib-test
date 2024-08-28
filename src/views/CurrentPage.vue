@@ -5,7 +5,8 @@
       <bread-crumb v-for="parent in parents" :key="parent.parentId" :to="{
               name: 'CurrentPage',
               params: {
-                id: parent.parentId
+                id: parent.parentId,
+                slug: parent.slug
               }
             }"> {{ parent.name }}
       </bread-crumb>

@@ -3,7 +3,8 @@
     <router-link class="menu-item__title" :to="{
       name: 'CurrentPage',
       params: {
-        id: item.id
+        id: item.id,
+        slug: item.slug,
       },
     }">
       <div class="title-content">{{ item.name }}</div>
