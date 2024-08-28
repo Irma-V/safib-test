@@ -1,9 +1,9 @@
 <template>
   <article>
     <div class="content">
-      <ul>
+      <div class="crumbs">
         <slot/>
-      </ul>
+      </div>
     </div>
   </article>
 </template>
@@ -25,9 +25,10 @@ export default {
 </script>
 
 <style scoped lang="scss">
-ul {
+.crumbs {
   list-style: none;
   display: flex;
   flex-direction: row;
+  gap: 30px;
 }
 </style>

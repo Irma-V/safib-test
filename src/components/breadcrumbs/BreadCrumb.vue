@@ -1,9 +1,10 @@
 <template>
-  <li>
+  <div class="crumb">
     <router-link v-bind="$attrs">
-      <slot />
+      <slot/>
     </router-link>
-  </li>
+    <span>/</span>
+  </div>
 </template>
 
 <script>
@@ -18,19 +19,24 @@ export default {
 </script>
 
 <style scoped lang="scss">
-li {
-  text-decoration: underline;
-  padding: 0 3%;
-  
-  &:first-child{
-    padding: 0 3% 0 0;
+.crumb {
+  text-decoration: none;
+  a {
+    text-transform: capitalize;
+    color: #42b983;
   }
-  :last-child {
-    color: rgb(89, 163, 139);;
-    text-decoration: none;
-    padding: 0 0 0 3%;
-    a{
+  span {
+    padding: 0 0 0 20px;
+  }
+
+  &:last-child {
+    a {
       cursor: auto;
+      color: #2c3e50;
+    }
+
+    span {
+      display: none;
     }
   }
 }
